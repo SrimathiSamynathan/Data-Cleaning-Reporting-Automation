@@ -451,7 +451,7 @@ if has_date and has_revenue:
     trend_df = cleaned_df.copy()
     trend_df["OrderDate"] = pd.to_datetime(trend_df["OrderDate"], errors="coerce")
     trend_df = trend_df.dropna(subset=["OrderDate"])
-    monthly = trend_df.set_index("OrderDate").resample("M")["Revenue"].sum().reset_index()
+    monthly = trend_df.set_index("OrderDate").resample("ME")["Revenue"].sum().reset_index()
     fig_trend = px.line(
         monthly, x="OrderDate", y="Revenue",
         title="Monthly Revenue Trend (Post-Cleaning)",
